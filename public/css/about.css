@@ -78,7 +78,7 @@ img.about-logo{
 }
 
 /* Tablet */
-@media only screen and (min-width: 739px) and (max-width: 1024px){
+@media only screen and (min-width: 740px) and (max-width: 1024px){
     img.about-logo{
         width: 50%!important;
         padding-right: 5px;

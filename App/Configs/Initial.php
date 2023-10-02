@@ -20,8 +20,8 @@
     defined("DATABASENAME") ?: define("DATABASENAME", $db["databasename"]);
     
     //public directory
-    defined("DOCUMENT_ROOT") ?: define("DOCUMENT_ROOT", "http://".$_SERVER["SERVER_NAME"].":81");
-    defined("URL_PUBLIC") ?: define("URL_PUBLIC", "http://".$_SERVER["SERVER_NAME"].":81"."/public");
+    defined("DOCUMENT_ROOT") ?: define("DOCUMENT_ROOT", "http://".$_SERVER["SERVER_NAME"].":80");
+    defined("URL_PUBLIC") ?: define("URL_PUBLIC", "http://".$_SERVER["SERVER_NAME"].":80"."/public");
     defined("URL_CSS") ?: define("URL_CSS", URL_PUBLIC. "/css");
     defined("URL_ICON") ?: define("URL_ICON", URL_PUBLIC. "/icon");
     defined("URL_JS") ?: define("URL_JS", URL_PUBLIC. "/js");

@@ -19,7 +19,7 @@
 
 .footer-intro-content{
     width: 100%;
-    font-size: 14px;
+    font-size: 16px;
     color: #666666;
     text-align: justify;
 }
@@ -45,7 +45,7 @@
 }
 
 .footer-nav-link{
-    font-size: 14px;
+    font-size: 16px;
     color: #666666;
 }
 p.footer-nav-link{
@@ -53,7 +53,7 @@ p.footer-nav-link{
 }
 
 p.footer-nav-link a{
-    font-size: 14px;
+    font-size: 16px;
     color: #666666;
     text-decoration: none;
 }
