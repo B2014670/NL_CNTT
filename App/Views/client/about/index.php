@@ -1,4 +1,5 @@
 <!-- Banner -->
+
 <div>
     <img src="<?= URL_ICON ?>/about-banner.jpg" alt="banner" class="img-fluid">
 </div>

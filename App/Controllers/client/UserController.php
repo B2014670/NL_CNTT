@@ -53,10 +53,23 @@
         }
 
         function update(){
-            $result = $this->userModel->updateInfor($_SESSION["user"]["id"], $_POST);
-            if ($result) header("Location: ".DOCUMENT_ROOT."/user");
+            $result = $this->userModel->updateInfor($_SESSION["user"]["id"], $_POST);            
+            if ($result[0]===true){
+                session_destroy();
+                session_start();
+                $_SESSION["user"] = $result[1];
+                header("Location: ".DOCUMENT_ROOT."/user");                
+            }
             else echo "Update fail!";
         }
+        function changepass(){
+            $result = $this->userModel->changePass($_SESSION["user"]["id"], $_POST);
+            if ($result){
+                header("Location: ".DOCUMENT_ROOT."/user");
+            } 
+            else echo "Update fail!";
+        }
+        
 
         function upload(){
             $result = $this->userModel->uploadAvatar($_SESSION["user"]["id"], $_FILES);

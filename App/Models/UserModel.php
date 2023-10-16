@@ -39,13 +39,13 @@
                 $result = $result->fetch_assoc();
 
                 if (password_verify($password, $result["password"])==true) return [true, $result];
-                else return "Password incorrect!";
+                else return "Email hoặc mật khẩu không chính xác!";
 
                 // if ($password === $result["password"]) return [true, $result];
                 // else return "Password incorrect!";
 
             }
-            else return [false,''];
+            else return 'Email hoặc mật khẩu không chính xác!';
         }
 
         //Authenticate when admin login
@@ -65,10 +65,12 @@
                 // if (password_verify($password, $result["password"])==true) return [true, $result];
                 // else return "Password incorrect!";
 
-                if ($password === $result["password"]) return [true, $result];
-                else return "Password incorrect!";
+                if ($password === $result["password"]) 
+                    return [true, $result];
+                else 
+                    return "Email hoặc mật khẩu không chính xác!";
             }
-            else return [false,''];
+            else return "Email hoặc mật khẩu không chính xác!";
         }
 
         //Check email exist
@@ -81,13 +83,41 @@
             if ($result->num_rows >0){
                 return true;
             }
-            else return false;
+            else return [false, $result];
         }
 
         //Update user information
         function updateInfor($id_user, $data){
             $stmt = $this->conn->prepare("UPDATE users SET name=?, email=?, phone=?, address=? WHERE id=?");
             $stmt->bind_param("ssssi", $data["name"], $data["email"], $data["phone"], $data["address"], $id_user);
+            $stmt->execute();            
+            $row = $stmt->affected_rows;
+            ///Return du lieu de cap nhat sesstion
+            if ($row==1 || $row==0){
+                $stmt1 = $this->conn->prepare("SELECT * FROM users WHERE id=?");
+                $stmt1->bind_param("s", $id_user);
+                $stmt1->execute();
+                $result = $stmt1->get_result();
+                if ($result->num_rows >0){
+                    $result = $result->fetch_assoc();
+                    return [true, $result];                               
+                }else 
+                    return [false,''];
+            }
+            else return [false,''];
+            // $result = $stmt->affected_rows;
+
+            // if ($result==1 || $result==0){
+            //     return true;
+            // }
+            // else return false;
+        }
+
+        //Change password
+        function changePass($id_user, $data){
+            $password = password_hash($data["pass_new1"], PASSWORD_DEFAULT);
+            $stmt = $this->conn->prepare("UPDATE users SET password=? WHERE id=?");
+            $stmt->bind_param("si", $password, $id_user);
             $stmt->execute();
             $result = $stmt->affected_rows;
 
@@ -137,4 +167,3 @@
             }
         }
     }
-?>

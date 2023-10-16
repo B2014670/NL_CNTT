@@ -43,7 +43,7 @@
 
         //Check email register
         function checkEmail(){
-            echo $result = $this->userModel->checkEmailExist($_GET["email"]) ;
+            echo $result = $this->userModel->checkEmailExist($_GET["email"]);
         }
     }
 ?>

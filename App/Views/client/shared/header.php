@@ -88,10 +88,9 @@
                         <a class="flex-sm-fill nav-link text-end" href="<?= DOCUMENT_ROOT ?>/accounts/login">Đăng nhập</a>
                     </div>
                 <?php else : ?>
-
-                    <div id="header-cart" class="col-xl-1 col-md-0 d-flex justify-content-end">
-                        <a href="<?= DOCUMENT_ROOT ?>/cart" id="cart" class="rounded-circle text-center" style="width: 50px; height: 50px;"><i class="fas fa-shopping-cart"></i></a>
-                    </div>
+                    <div id="header-cart" class="col-xl-1 col-md-0 d-flex justify-content-end">                        
+                        <a href="<?= DOCUMENT_ROOT ?>/cart" id="cart" class="rounded-circle text-center p-3 " ><i class="fas fa-shopping-cart"></i></a>
+                    </div>                    
                     <div id="menu-dropdown" class="col-xl-1 col-md-0 d-flex justify-content-end position-relative">
                         <img id="avatar" class="rounded-circle dropdown-toggle" style="width: 50px" src="<?= URL_IMG ?>/users/<?= $_SESSION['user']['avatar'] ?>" alt="avatar">
                         <ul id="sub-nav" class="position-absolute top-100 end-0">

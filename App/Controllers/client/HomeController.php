@@ -5,6 +5,7 @@
     class HomeController extends Controller{
         private $cateModel;
         private $vegeModel;
+        private $feedbackModel;
 
         function __construct(){
             $this->cateModel = $this->model("CategoriesModel");

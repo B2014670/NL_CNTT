@@ -68,23 +68,23 @@
     <!-- JS menu bar -->
     <script>
         $(document).ready(function() {
-            $(window).scroll(function() {
-                if ($(this).scrollTop()) {
-                    $('header').addClass('sticky ');
-                } else {
-                    $('header').removeClass('sticky ');
-                }
-            });
             $('.responsive').slick({
                 dots: false,
                 infinite: false,
                 slidesToShow: 4,
                 slidesToScroll: 4,
                 responsive: [{
-                        breakpoint: 1024,
+                        breakpoint: 1290,
+                        settings: {
+                            slidesToShow: 3,
+                            slidesToScroll: 3,
+                        }
+                    },
+                    {
+                        breakpoint: 1023,
                         settings: {
                             slidesToShow: 2,
-                            slidesToScroll: 2,                            
+                            slidesToScroll: 2,
                         }
                     },
                     {
@@ -104,11 +104,19 @@
                     }
                 ]
             });
+            $(window).scroll(function() {
+                if ($(this).scrollTop()) {
+                    $('header').addClass('sticky ');
+                } else {
+                    $('header').removeClass('sticky ');
+                }
+            });
 
         });
     </script>
-    <script src="<?= URL_JS ?>/cart.js"></script>
+
     <script src="<?= URL_JS ?>/profile.js"></script>
+    <script src="<?= URL_JS ?>/validator.js"></script>
 
 </body>
 
