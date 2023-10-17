@@ -68,13 +68,20 @@
     <!-- JS menu bar -->
     <script>
         $(document).ready(function() {
+            $(window).scroll(function() {
+                if ($(this).scrollTop()) {
+                    $('header').addClass('sticky ');
+                } else {
+                    $('header').removeClass('sticky ');
+                }
+            });
             $('.responsive').slick({
                 dots: false,
                 infinite: false,
                 slidesToShow: 4,
                 slidesToScroll: 4,
                 responsive: [{
-                        breakpoint: 1290,
+                        breakpoint: 1281,
                         settings: {
                             slidesToShow: 3,
                             slidesToScroll: 3,
@@ -104,13 +111,7 @@
                     }
                 ]
             });
-            $(window).scroll(function() {
-                if ($(this).scrollTop()) {
-                    $('header').addClass('sticky ');
-                } else {
-                    $('header').removeClass('sticky ');
-                }
-            });
+            
 
         });
     </script>

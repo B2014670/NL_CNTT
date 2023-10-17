@@ -11,8 +11,8 @@
             <div class="cate-content container menu">
                 <?php foreach ($data["vege_to_show"] as $i => $vege) : ?>
                     <div class="cate-item">
-                        <a href="<?= DOCUMENT_ROOT ?>/products/detail/<?= $vege['id'] ?>"><img class="item-img" src="<?= URL_IMG ?>/vegetables/<?= $vege['image'] ?>" alt=""></a>
-                        <h3 class="item-name"><?= ucwords($vege['name']) ?></h3>
+                        <a href="<?= DOCUMENT_ROOT ?>/products/detail/<?= $vege['id'] ?>"><img class="item-img img-fluid" src="<?= URL_IMG ?>/vegetables/<?= $vege['image'] ?>" alt=""></a>
+                        <h5 class="item-name"><?= ucwords($vege['name']) ?></h5>
                         <div class="star-vote mt-1">
                             <?php
                             $rate = $data[$vege['id']]["rating"];
@@ -29,22 +29,16 @@
                             <?php for ($i = 1; $i <= $no_vote; $i++) : ?>
                                 <i class="far fa-star" style="color: #FFCC33; margin-left:1px; margin-right:1px; font-size: 16px;"></i>
                             <?php endfor; ?>
-                        </div>                        
-                        <div class="price-button row">
-                            <div class="col">
-                                <?php if (($vege["sale_price"])) : ?>
-                                    <p style="color: var(--black); font-weight: 700; font-size:22px; margin-bottom:0; line-height: 25px" class="text-decoration-line-through"><?= number_format($vege["sale_price"] != NULL ? $vege["price"] : $vege["sale_price"], 0, ',', '.') ?>đ</p>
-                                <?php endif; ?>
-                                <p style="color: var(--green); font-weight: 700; font-size:22px; margin-bottom:0; line-height: 38px"><?= number_format($vege["sale_price"] == NULL ? $vege["price"] : $vege["sale_price"], 0, ',', '.') ?>đ</p>
-                            </div>
-                            <div class="col align-items-center">
-                                <button onclick="addToCart(<?= isset($_SESSION['user']) ? $_SESSION['user']['id'] : 0 ?> , <?= $vege['id'] ?>)" class="btn btn-primary" style="font-size: 14px; font-weight: 700; "><i class="fas fa-shopping-cart" aria-hidden="true"></i>Thêm</button>
-                            </div>
+                        </div>
+                        <div class="price-button">
+                            <p style="color: var(--green); font-weight: 700; font-size:22px; margin-bottom:0; line-height: 38px"><?= number_format($vege["sale_price"] == NULL ? $vege["price"] : $vege["sale_price"], 0, ',', '.') ?>đ</p>
+                            <button onclick="addToCart(<?= isset($_SESSION['user']) ? $_SESSION['user']['id'] : 0 ?> , <?= $vege['id'] ?>)" class="btn btn-primary" style="font-size: 14px; font-weight: 700;">Thêm vào giỏ</button>
                         </div>
                     </div>
                 <?php endforeach; ?>
             </div>
-            <nav aria-label="Page navigation example" class="d-flex justify-content-center">
+                        
+            <nav aria-label="Page navigation example">
                 <ul class="pagination mt-3">
                     <li class="page-item ps-1 pe-1"><a class="page-link" href="<?= DOCUMENT_ROOT ?>/products/index?page=<?= $data['page'] - 1 ?>"><i class="fas fa-angle-double-left"></i></a></li>
                     <?php $num = $data["num_of_page"] ?>
