@@ -115,7 +115,7 @@
 
         });
     </script>
-
+    <script src="<?= URL_JS ?>/cart.js"></script>
     <script src="<?= URL_JS ?>/profile.js"></script>
     <script src="<?= URL_JS ?>/validator.js"></script>
 

@@ -9,10 +9,11 @@ function checkEmailAddress(email) {
       //Get result from function checkEmail() in AccountsController
       var reponse = this.response;
 
-      if (reponse == true) {//Adding is successful   
+      if (reponse == true) {//Email exist
         document.querySelector("#checkEmailExist").style.display = "block";
+        document.querySelector(".btn-sign").classList.add("disabled");    
       }
-      else {//Adding is failed
+      else {//Email can use 
         document.querySelector("#checkEmailExist").style.display = "none";
       }
     }

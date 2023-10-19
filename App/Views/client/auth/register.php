@@ -47,7 +47,7 @@
               </div>
               
               <div class="d-grid mb-2">
-                <button class="btn btn-lg btn-primary btn-login fw-bold text-uppercase" type="submit">ĐĂNG KÝ</button>
+                <button class="btn btn-lg btn-primary btn-login fw-bold text-uppercase btn-sign" type="submit">ĐĂNG KÝ</button>
               </div>
 
               <a class="d-block text-center mt-2 small" href="<?= DOCUMENT_ROOT ?>/accounts/login">Bạn đã có tài khoản? Đăng nhập</a>

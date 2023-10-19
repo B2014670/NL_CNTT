@@ -9,7 +9,7 @@
     <h3 class="sub-title text-center" style="color: var(--bs-green)">Giới thiệu</h2>
     <h2 class="title text-center" style="color: var(--bs-primary)">TẠI SAO NÊN CHỌN TÈO?</h2>
     <div class="about mt-4">
-        <img class="about-logo" src="<?= URL_ICON ?>/TeoLogo.png" alt="Teo's logo">
+        <img class="about-logo h-75" src="<?= URL_ICON ?>/fraazo-logo.png" alt="Teo's logo">
         <div class="about-content mt-4">
             <h2 class="about-content-title">Xin chào! Mình tên là Tèo</h2>
             <p>“Rau Nhà Tèo” là cửa hàng chuyên cung cấp các loại sau sạch trên địa bàn Thành phố Cần Thơ. Rau được trồng theo mô hình nông nghiệp sạch với tiêu chí 4K, cam kết đem lại cho quý khách hàng những sản phẩm rau tươi an toàn cho sức khỏe. Hãy cùng trở thành những người tiêu dùng thông minh khi chọn sử dụng các sản phẩm Rau Nhà Tèo nhé!</p>

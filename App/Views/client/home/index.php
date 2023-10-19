@@ -64,9 +64,10 @@
                             <p style="color: var(--green); font-weight: 700; font-size:22px; margin-bottom:0; line-height: 38px"><?= number_format($vege["sale_price"] == NULL ? $vege["price"] : $vege["sale_price"], 0, ',', '.') ?>đ</p>
                         </div>
                         <div class="col align-items-center">
-                            <button onclick="addToCart(<?= isset($_SESSION['user']) ? $_SESSION['user']['id'] : 0 ?> , <?= $vege['id'] ?>)" class="btn btn-primary" style="font-size: 14px; font-weight: 700; "><i class="fas fa-shopping-cart" aria-hidden="true"></i> Thêm</button>
+                        <button onclick="addToCart(<?= isset($_SESSION['user']) ? $_SESSION['user']['id'] : 0 ?> , <?= $vege['id'] ?>)" class="btn btn-primary" style="font-size: 14px; font-weight: 700;">Thêm</button>
                         </div>
                     </div>
+                    
                 </div>
                 
             <?php endforeach; ?>
