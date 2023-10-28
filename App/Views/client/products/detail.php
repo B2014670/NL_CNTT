@@ -47,6 +47,7 @@
         color: gray;
         padding-left: 15px;
         padding-top: 20px;
+        padding-bottom: 10px;
         background-color: #E8E8E8;
         border-radius: 0px 15px 15px 15PX;
     }
@@ -102,11 +103,13 @@
 
         #fs {
             width: 100%;
-
+            margin-left: 48%;
         }
 
-        #fs {
-            margin-left: 48%;
+        #fs,
+        #sc,
+        #th {
+            height: auto;
         }
 
 
@@ -149,6 +152,12 @@
             margin-top: .03%;
         }
 
+        #fs,
+        #sc,
+        #th {
+            height: auto;
+        }
+
         #fs>h4,
         #sub,
         button {
@@ -173,6 +182,12 @@
         #sc {
             width: 100%;
         }
+
+        #fs,
+        #sc,
+        #th {
+            height: auto;
+        }
     }
 </style>
 <!-- Banner -->
@@ -188,9 +203,11 @@
             <div id="first"><img src="<?= URL_IMG ?>/vegetables/<?= $data['vege_to_show']['image'] ?>"></div>
             <div id="second">
                 <div id="fs">
+
                     <h2 class="about-content-title"><?= $data['vege_to_show']['name'] ?></h2>
                     <div class="star-vote mt-1 justify-content-start">
                         <?php
+
                         $vote = floor($data['avg_rating']);
                         $no_vote = floor(5 - $data['avg_rating']);
                         $half_vote = 5 - ($vote + $no_vote);
@@ -207,27 +224,29 @@
                     </div>
                     <?php if (isset($data["vege_to_show"]["sale_price"])) : ?>
                         <span class='text-decoration-line-through mb-0'><?= number_format($data['vege_to_show']['price'], 0, ',', '.') ?>đ</span>
-                        <?php endif; ?>
+                    <?php endif; ?>
 
 
-                        <span class="slide-price"><?= number_format($data["vege_to_show"]["sale_price"] == NULL ? $data['vege_to_show']['price'] : $data['vege_to_show']['sale_price'], 0, ',', '.') ?>đ</span>
-                        <p class="detail-content">Khối lượng: <b><?= $data['vege_to_show']['weight'] == 1000 ? '1k' : $data['vege_to_show']['weight'] ?>g</b></p>
-                        <div class="detail-amount mb-3">
-                            <p class="d-inline detail-content">Số lượng:</p>
-                            <input id="detail_amount" class="form-control text-center d-inline w-25" value="1" type="number" min="1" max="10">
-                        </div>
-                        <button class="btn btn-primary" onclick="addToCartInDetail(<?= isset($_SESSION['user']) ? $_SESSION['user']['id'] : 0 ?>, <?= $data['vege_to_show']['id'] ?>, detail_amount)">Thêm vào giỏ</button>
-                       
+                    <span class="slide-price"><?= number_format($data["vege_to_show"]["sale_price"] == NULL ? $data['vege_to_show']['price'] : $data['vege_to_show']['sale_price'], 0, ',', '.') ?>đ</span>
+                    <p class="detail-content text-dark">Khối lượng: <b><?= $data['vege_to_show']['weight'] == 1000 ? '1k' : $data['vege_to_show']['weight'] ?>g</b></p>
+                    <div class="detail-amount mb-3 text-dark">
+                        <p class="d-inline detail-content">Số lượng:</p>
+                        <input id="detail_amount" class="form-control text-center d-inline w-25" value="1" type="number" min="1" max="10">
+                    </div>
+                    <button class="btn btn-primary" onclick="addToCartInDetail(<?= isset($_SESSION['user']) ? $_SESSION['user']['id'] : 0 ?>, <?= $data['vege_to_show']['id'] ?>, detail_amount)">Thêm vào giỏ</button>
+
                 </div>
                 <div id="sc">
-                    <h5 id="ds"  style="cursor: pointer; color: black; font-weight: 700; font-size: 24px;" onclick="dscFunction()">Mô tả</h5>
-                    <!-- <h5 id="bn"  style="cursor: pointer; color: grey; font-weight: 700; font-size: 24px;" onclick="benFunction()">Mô tả</h5> -->
-                    <h5 id="inf" style="cursor: pointer; color: grey; font-weight: 700; font-size: 24px;" onclick="infoFunction()">Nguồn gốc</h5>
+                    <h5 id="ds" style="cursor: pointer; color: black; font-weight: 700; font-size: 24px;" onclick="dscFunction('<?= $data['vege_to_show']['seed'] ?>')">Nguồn gốc</h5>
+                    <h5 id="inf" style="cursor: pointer; color: grey; font-weight: 700; font-size: 24px;" onclick="infoFunction('<?= $data['vege_to_show']['seed'] ?>', '<?= $data['vege_to_show']['planting_place'] ?>' )">Nơi trồng</h5>
                 </div>
-                <div id="th">Chất xơ trong bắp non giúp kích thích tiêu hóa. Một hệ tiêu hóa khỏe mạnh cũng có thể giúp giảm cân hiệu quả.</div>
+                <div id="th">
+                    <?= $data['vege_to_show']['seed'] ?>                    
+                </div>
             </div>
         </div>
-        <div class="about">
+
+        <!-- <div class="about">
             <img class="about-logo w-50 " src="<?= URL_IMG ?>/vegetables/<?= $data['vege_to_show']['image'] ?>" alt="">
             <div class="about-content mt-4 w-50 ps-5 pt-3">
                 <h2 class="about-content-title"><?= $data['vege_to_show']['name'] ?></h2>
@@ -260,7 +279,7 @@
                     <p class="detail-content"><b>Nơi trồng:</b> <?= $data['vege_to_show']['planting_place'] ?></p>
                 </div>
             </div>
-        </div>
+        </div> -->
 
         <!-- Comment and vote -->
         <div class="comment mt-3">

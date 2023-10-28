@@ -26,10 +26,7 @@
     <?php if ($GLOBALS['currentPage'] == "Accounts") : ?>
         <link rel="stylesheet" href="<?= URL_CSS ?>/auth.css">
     <?php endif; ?>
-    <!-- TEST NAV -->
-    <script src="https://kit.fontawesome.com/f205abf1eb.js" crossorigin="anonymous"></script>
-    <script src="https://kit.fontawesome.com/f205abf1eb.js" crossorigin="anonymous"></script>
-    <!-- END TEST NAV -->
+    
 </head>
 
 <body>
@@ -61,6 +58,10 @@
 
     <!-- Javascript for Bootstrap -->
     <script src="<?= URL_BOOTSTRAP ?>/js/bootstrap.min.js"></script>
+
+    <!-- TEST NAV -->
+    <script src="<?= URL_BOOTSTRAP ?>/js/f205abf1eb.js"></script>
+    <!-- END TEST NAV -->
 
     <!-- slick -->
     <script src="<?= URL_PUBLIC ?>/slick/slick.js?v2022" type="text/javascript" charset="utf-8"></script>
@@ -111,7 +112,7 @@
                     }
                 ]
             });
-            
+
 
         });
     </script>

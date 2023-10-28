@@ -115,8 +115,7 @@ use App\Core\Controller;
                 $data[$vege["id"]]["rating"] = $rate;
             }
             $this->view("products/search", $data);
-        }
-
+        }        
         //Detail
         function detail($id){
             $veges1 = $this->vegeModel->getVegeDetail($id);
