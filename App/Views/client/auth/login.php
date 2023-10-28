@@ -24,8 +24,9 @@
             <div class="d-grid mb-2">
               <button class="btn btn-lg btn-primary btn-login fw-bold text-uppercase">Đăng nhập</button>
             </div>
-
+            <a class="d-block text-center mt-2 small" href="<?= DOCUMENT_ROOT ?>/accounts/forget">Quên mật khẩu</a>
             <a class="d-block text-center mt-2 small" href="<?= DOCUMENT_ROOT ?>/accounts/register">Bạn đã là thành viên chưa? Đăng ký</a>
+            
           </form>
         </div>
       </div>

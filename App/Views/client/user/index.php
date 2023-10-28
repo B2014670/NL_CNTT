@@ -2,9 +2,17 @@
 <div>
     <img src="<?= URL_ICON ?>/product-banner-Copy.jpg" alt="banner" class="img-fluid">
 </div>
+
 <!-- User information -->
 <div class="wrapper bg-white">
     <div class="container pt-3 pb-3 mt-5 border border-2 rounded-3" style="background-color: var(--body)">
+        <ul class="taikhoan-nav navbar navbar-expand-lg navbar-light bg-light p-0 mx-auto p-2">
+            <li class="col text-center"><a class="text-dark" href="profile.php?query=taikhoan">THÔNG TIN</a></li>
+            <li class="col text-center"><a class="text-dark" href="profile.php?query=choxacnhan">ĐƠN CHỜ XÁC NHẬN</a></li>
+            <li class="col text-center"><a class="text-dark" href="profile.php?query=tatca">ĐANG GIAO</a></li>
+            <li class="col text-center"><a class="text-dark" href="profile.php?query=hoanthanh">LỊCH SỬ MUA HÀNG</a></li>
+        </ul>
+       
         <h3 class="sub-title text-center" style="color: var(--bs-green)">Cá nhân</h2>
             <h2 class="title text-center" style="color: var(--bs-primary)">THÔNG TIN CÁ NHÂN</h2>
             <div class="container">
@@ -45,10 +53,10 @@
                                 <input name="pass_old" type="text" id="pass_old" value="">
 
                                 <p class="input-name">Mật khẩu mới</p>
-                                <input name="pass_new1" type="text" id="pass_new1" value="">
+                                <input name="password" type="text" id="password" value="">
 
                                 <p class="input-name">Xác nhận mật khẩu</p>
-                                <input name="pass_new2" type="text" id="pass_new2" value="">
+                                <input name="re-password" type="text" id="re-password" value="">
                             </div>
                             <input class="btn btn-primary" type="submit" value="Đỗi mật khẩu">
                         </form>

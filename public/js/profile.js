@@ -10,7 +10,7 @@ $(document).ready(function(){
             var form_data = new FormData();
             form_data.append("file", property);
             $.ajax({
-                url: "http://localhost:81/user/upload",
+                url: "http://localhost:80/user/upload",
                 method: "POST",
                 data: form_data,
                 contentType: false,

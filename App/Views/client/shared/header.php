@@ -61,11 +61,11 @@
     }
 </style> -->
 <header>
-    <div id="wrapper" class="wrapper position-fixed  top-0">
+    <div id="wrapper" class="wrapper position-fixed top-0" style="height: 80px;">
         <div class="container mt-1 mb-2">
             <div class="row d-flex justify-content-center align-items-center">
                 <div id="header-logo" class="col-xl-3 col-md-3">
-                    <a href="<?= DOCUMENT_ROOT ?>/about"><img class="w-75" src="<?= URL_ICON ?>/fraazo-logo.png" alt="Logo"></a>
+                    <a href="<?= DOCUMENT_ROOT ?>/about"><img class="w-75" src="<?= URL_ICON ?>/fraazo-logo.png" alt="Logo" height="70px"></a>
                 </div>
                 <div id="header-menu" class="col-xl-4 col-xs-0 col-md-0">
                     <nav class="nav nav-pills flex-column flex-sm-row">

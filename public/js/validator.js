@@ -1,5 +1,5 @@
 function checkEmailAddress(email) {
-  //Get url of server to run 'localhost:81/accounts/checkEmail...'
+  //Get url of server to run 'localhost:80/accounts/checkEmail...'
   var documentRoot = document.getElementById("documentRootId").innerText;
   var xhttp = new XMLHttpRequest();
 
@@ -8,17 +8,40 @@ function checkEmailAddress(email) {
 
       //Get result from function checkEmail() in AccountsController
       var reponse = this.response;
-
       if (reponse == true) {//Email exist
         document.querySelector("#checkEmailExist").style.display = "block";
-        document.querySelector(".btn-sign").classList.add("disabled");    
+        document.querySelector(".btn-sign").classList.add("disabled");
       }
       else {//Email can use 
+
         document.querySelector("#checkEmailExist").style.display = "none";
       }
     }
   }
 
+  //Call funtion checkEmail() in AccountsController
+  xhttp.open("GET", `${documentRoot}/accounts/checkEmail?email=${email}`, true);
+  xhttp.send();
+}
+
+function checkEmailSentToken(email) {
+  //Get url of server to run 'localhost:80/accounts/checkEmail...'
+  var documentRoot = document.getElementById("documentRootId").innerText;
+  var xhttp = new XMLHttpRequest();
+
+  xhttp.onreadystatechange = function () {
+    if (this.readyState == 4 && this.status == 200) {
+      //Get result from function checkEmail() in AccountsController
+      var reponse = this.response;
+      if (reponse == true) {//Email exist
+        document.querySelector("#checkEmailExist").style.display = "none";
+      }
+      else {//Email can use 
+        document.querySelector("#checkEmailExist").style.display = "block";
+        document.querySelector(".btn-sentMail").classList.add("disabled");
+      }
+    }
+  }
   //Call funtion checkEmail() in AccountsController
   xhttp.open("GET", `${documentRoot}/accounts/checkEmail?email=${email}`, true);
   xhttp.send();
@@ -42,16 +65,16 @@ function checkSignUp() {
       return false;
     }
     if (email.value == "") {
-      alert('Hãy nhập email!');      
+      alert('Hãy nhập email!');
       return false;
     }
-    
+
 
     if (pass.value == "") {
       alert('Mật khẩu không được bỏ trống!');
-      return false;       
-    }else if (pass.value.length < 6) {
-      alert('Mật khẩu tối thiểu 6 ký tự');      
+      return false;
+    } else if (pass.value.length < 6) {
+      alert('Mật khẩu tối thiểu 6 ký tự');
       return false
     } else {
       let flag1 = 0, flag2 = 0;//kiem tra ky tu: flag1 so,flag2 là ky tu
@@ -63,7 +86,7 @@ function checkSignUp() {
           flag2 = 1;
         }
       }
-      if (flag1 == 0 || flag2 == 0) {        
+      if (flag1 == 0 || flag2 == 0) {
         alert('Mật khẩu phải có các ký tự và chữ số');
         return false
       }
@@ -74,18 +97,18 @@ function checkSignUp() {
       alert('Giá trị nhập vào không khớp');
       return false;
     }
-    
+
     if (phone.value == "") {
       alert('Số điện thoại không được bỏ trống ');
       return false;
     }
-    
+
     if (address.value == "") {
       alert('Địa chỉ không được bỏ trống ');
       return false;
     }
     if (email.match(regexEmail) == false) {
-      alert('Email không hợp lệ!');      
+      alert('Email không hợp lệ!');
       return false;
     }
     if (phone.match(regexPhoneNumber) == false) {
