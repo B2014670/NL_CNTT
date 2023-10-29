@@ -12,9 +12,9 @@ function checkEmailAddress(email) {
         document.querySelector("#checkEmailExist").style.display = "block";
         document.querySelector(".btn-sign").classList.add("disabled");
       }
-      else {//Email can use 
-
+      else {//Email can use
         document.querySelector("#checkEmailExist").style.display = "none";
+        document.querySelector(".btn-sign").classList.remove("disabled");
       }
     }
   }
@@ -35,6 +35,7 @@ function checkEmailSentToken(email) {
       var reponse = this.response;
       if (reponse == true) {//Email exist
         document.querySelector("#checkEmailExist").style.display = "none";
+        document.querySelector(".btn-sentMail").classList.remove("disabled");
       }
       else {//Email can use 
         document.querySelector("#checkEmailExist").style.display = "block";

@@ -79,8 +79,8 @@ class UserModel extends Database
 
         if ($result->num_rows > 0) {
             $result = $result->fetch_assoc();
-            return true;
-        } else return false;
+            return [true, $result];
+        } else return [false, $result];
     }
 
     //Update user information

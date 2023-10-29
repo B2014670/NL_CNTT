@@ -1,5 +1,4 @@
 <?php
-
 use App\Core\Controller;
 use PHPMailer\PHPMailer\PHPMailer;
 use PHPMailer\PHPMailer\SMTP;
@@ -74,8 +73,6 @@ class AccountsController extends Controller
                 $data['expDate'] = $expDate;
                 $data['email'] = $emailId;
                 $result1 = $this->userModel->ressetPass($data);
-                // $update = mysqli_query($conn, "UPDATE users set  password='" . $password . "', reset_link_token='" . $token . "' ,exp_date='" . $expDate . "' WHERE email='" . $emailId . "'");
-
                 $href = "http://localhost/accounts/resset?key=" . $emailId . "&token=" . $token . "";
                 //Create an instance; passing `true` enables exceptions
 
@@ -90,8 +87,8 @@ class AccountsController extends Controller
                     $mail->Host       = 'smtp.gmail.com';                     //Set the SMTP server to send through
                     // $mail->Host       = 'smtp.mail.yahoo.com';                     //Set the SMTP server to send through
                     $mail->SMTPAuth   = true;                                   //Enable SMTP authentication
-                    $mail->Username   = 'luanb2014670@student.ctu.edu.vn';                     //SMTP username
-                    $mail->Password   = '8x2Lg7QH';                               //SMTP password
+                    $mail->Username   = "luanb2014670@student.ctu.edu.vn" ;                     //SMTP username
+                    $mail->Password   = SECRET_password_email ;                               //SMTP password
                     $mail->SMTPSecure = PHPMailer::ENCRYPTION_SMTPS;            //Enable implicit TLS encryption
                     $mail->Port       = 465;                                    //TCP port to connect to; use 587 if you have set `SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS`
 
@@ -177,7 +174,7 @@ class AccountsController extends Controller
             $data['email'] = $_GET['key'];
             $result = $this->userModel->checkLinkExpired($data);
             // print_r($result);
-            if ($result[0] === true) {
+            if ($result[0] == true) {
                 $this->view("auth/ressetPassword", $data);
             } else {
                 print_r($result[1]);
@@ -214,6 +211,6 @@ class AccountsController extends Controller
     function checkEmail()
     {
         $result = $this->userModel->checkEmailExist($_GET["email"]);
-        print_r($result);
+        print_r($result[0]);
     }
 }
