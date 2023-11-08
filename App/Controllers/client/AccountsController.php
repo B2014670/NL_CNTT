@@ -84,19 +84,19 @@ class AccountsController extends Controller
                     // $mail->SMTPDebug = SMTP::DEBUG_SERVER;                      //Enable verbose debug output
                     $mail->isSMTP();                                            //Send using SMTP
                     $mail->CharSet  = "utf-8";
-                    $mail->Host       = 'smtp.gmail.com';                     //Set the SMTP server to send through
-                    // $mail->Host       = 'smtp.mail.yahoo.com';                     //Set the SMTP server to send through
+                    $mail->Host       = 'smtp.mail.yahoo.com';                  //Set the SMTP server to send through
                     $mail->SMTPAuth   = true;                                   //Enable SMTP authentication
-                    $mail->Username   = "luanb2014670@student.ctu.edu.vn" ;                     //SMTP username
-                    $mail->Password   = SECRET_password_email ;                               //SMTP password
+                    $mail->Username   = "thanhluan3161@yahoo.com" ;             //SMTP username
+                    $mail->Password   = "hkdcfezplpumfimv" ;                    //SMTP yahoo app password
+    
                     $mail->SMTPSecure = PHPMailer::ENCRYPTION_SMTPS;            //Enable implicit TLS encryption
                     $mail->Port       = 465;                                    //TCP port to connect to; use 587 if you have set `SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS`
 
                     //Recipients
-                    $mail->setFrom('luanb2014670@student.ctu.edu.vn', 'Fazzo.store');
+                    $mail->setFrom('thanhluan3161@yahoo.com', 'Fazzo.store');
                     $mail->addAddress($result[1]['email'], $result[1]['name']);     //Add a recipient
                     // $mail->addAddress('ellen@example.com');               //Name is optional
-                    $mail->addReplyTo('luanb2014670@student.ctu.edu.vn', 'Fazzo.store');
+                    $mail->addReplyTo('thanhluan3161@yahoo.com', 'Fazzo.store');
 
                     //Content
                     $mail->isHTML(true);                                  //Set email format to HTML

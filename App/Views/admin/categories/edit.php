@@ -36,7 +36,7 @@
                                     <div class="custom-file">
                                         <input type="file" class="custom-file-input" id="exampleInputFile" name="image" type="file">
                                         <input type="hidden" value="<?= $data['cate']['image'] ?>" name="old-image">
-                                        <label class="custom-file-label" for="exampleInputFile">Chọn ảnh</label>
+                                        <label class="custom-file-label" for="exampleInputFile"><?= $data['cate']['image'] ?? "Chọn ảnh" ?></label>
                                     </div>
                                     <div class="input-group-append">
                                         <span class="input-group-text">Tải lên</span>
@@ -49,7 +49,7 @@
                 <!-- /.card-body -->
 
                 <div class="card-footer">
-                  <button type="submit" class="btn btn-info">Chỉnh sửa</button>
+                  <button type="submit" class="btn btn-info" >Chỉnh sửa</button>
                 </div>
               </form>
             </div>

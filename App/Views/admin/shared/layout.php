@@ -88,14 +88,14 @@
                     "info": true,
                     "autoWidth": true,
                     "responsive": true,
-                    "buttons": ["copy", "csv", "excel", "pdf", "print", "colvis"]
+                    "buttons": ["copy", "excel", "pdf", "print", "colvis"]
                 }).buttons().container().appendTo('#cakeTable_wrapper .col-md-6:eq(0)');
             });
         </script>
 
         <script src="<?= URL_PUBLIC ?>/admin/js/deleteItem.js"></script>
         <script src="<?= URL_PUBLIC ?>/admin/js/order.js"></script>
-        <script src="<?= URL_PUBLIC ?>/admin/js/event_input_file.js"></script>
+        <script src="<?= URL_PUBLIC ?>/admin/js/event_input.js"></script>
     <?php endif; ?>
 
     <?php if (!isset($_SESSION['admin'])) : ?>

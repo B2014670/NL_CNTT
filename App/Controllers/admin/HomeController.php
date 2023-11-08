@@ -8,10 +8,7 @@
         }
         
         function Index(){
-            $result = $this->vegeModel->all();
-            if ($result != false) $data["vege"] = $result;
-            
-            $this->view("products/index", $data);
+            $this->view("home/index", []);
         }
     }
 ?>

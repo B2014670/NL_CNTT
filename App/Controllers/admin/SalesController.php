@@ -1,7 +1,7 @@
 <?php
     use App\Core\Controller;
 
-    class SaleController extends Controller{
+    class SalesController extends Controller{
         private $vegeModel;
         function __construct(){
             $this->vegeModel = $this->model("VegetablesModel");
@@ -11,13 +11,13 @@
             $result = $this->vegeModel->getSale();
             if ($result != false) $data["vege"] = $result;
             
-            $this->view("sale/index", $data);
+            $this->view("sales/index", $data);
         }
 
         function create(){
             $result = $this->vegeModel->all();
             if ($result != false) $data["vege"] = $result;
-            $this->view("sale/create", $data);
+            $this->view("sales/create", $data);
         }
 
         function getPrice(){
@@ -32,19 +32,19 @@
         }
 
         function store(){
-            if(!isset($_POST)) header("Location: ".DOCUMENT_ROOT."/admin/sale/create");
+            if(!isset($_POST)) header("Location: ".DOCUMENT_ROOT."/admin/sales/create");
             else{
                 $data["id_vege"] = $_POST["sale_product"];
                 $data["price"] = $_POST["sale_price"];
                 $result = $this->vegeModel->createSale($data);
                 if ($result == true) header("Location: ".DOCUMENT_ROOT."/admin/sale");
-                else header("Location: ".DOCUMENT_ROOT."/admin/sale/create");
+                else header("Location: ".DOCUMENT_ROOT."/admin/sales/create");
             }
         }
 
         function edit($id){
             $data["vege"] = $this->vegeModel->getVegeById($id);
-            $this->view("sale/edit", $data);
+            $this->view("sales/edit", $data);
         }
 
         function update($id){
@@ -53,7 +53,7 @@
                 $data["price"] = $_POST["sale_price"];
                 $result = $this->vegeModel->updateSalePrice($data);
                 if ($result == true) header("Location: ".DOCUMENT_ROOT."/admin/sale");
-                else header("Location: ".DOCUMENT_ROOT."/admin/sale/edit");
+                else header("Location: ".DOCUMENT_ROOT."/admin/sales/edit/".$data["id"]);
             }
             else echo "Can not update this sale!"; 
         }

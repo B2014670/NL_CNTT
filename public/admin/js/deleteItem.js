@@ -51,7 +51,33 @@ function deleteCate(id_cate){
 }
 
 function deleteOrig(id_orig){
-    var check = confirm('Bạn chắc chắn muốn xóa thông tin nguồn gốc này?');
+    var check = confirm('Bạn chắc chắn muốn xóa nguồn gốc này?');
+    if (check == true){
+        var documentRoot = document.getElementById("documentRootId").innerText;
+        var xhttp = new XMLHttpRequest();
+
+        xhttp.onreadystatechange = function(){
+            
+            if (this.readyState==4 && this.status==200){
+
+                var reponse = this.response;
+
+                if (reponse == true){ 
+                    window.location.reload(false);
+                    alert("Đã xóa!");
+                }
+                else {
+                    alert("Không thể xóa!");
+                }
+            }
+        }
+        xhttp.open("GET", `${documentRoot}/admin/originals/delete?origId=${id_orig}`, true);
+        xhttp.send();
+    }
+}
+
+function deleteSale(id_vege){
+    var check = confirm('Bạn chắc chắn muốn ngưng khuyến mãi sản phẩm này?');
     if(check==true){
         var documentRoot = document.getElementById("documentRootId").innerText;
         var xhttp = new XMLHttpRequest();
@@ -71,32 +97,7 @@ function deleteOrig(id_orig){
                 }
             }
         }
-        xhttp.open("GET", `${documentRoot}/admin/original/delete?origId=${id_orig}`, true);
-        xhttp.send();
-    }
-}
-
-function deleteSale(id_vege){
-    var check = confirm('Bạn chắc chắn muốn ngưng khuyến mãi sản phẩm này?');
-    if(check==true){
-        var documentRoot = document.getElementById("documentRootId").innerText;
-        var xhttp = new XMLHttpRequest();
-
-        xhttp.onreadystatechange = function(){
-            
-            if(this.readyState==4 && this.status==200){
-
-                var reponse = this.response;
-
-                if(reponse==true){ 
-                    window.location.reload(false);
-                }
-                else{
-                    alert("Không thể xóa!");
-                }
-            }
-        }
-        xhttp.open("GET", `${documentRoot}/admin/sale/delete?vegeId=${id_vege}`, true);
+        xhttp.open("GET", `${documentRoot}/admin/sales/delete?vegeId=${id_vege}`, true);
         xhttp.send();
     }
 }
@@ -121,7 +122,7 @@ function deleteComment(id_cmt){
                 }
             }
         }
-        xhttp.open("GET", `${documentRoot}/admin/feedback/delete?cmtId=${id_cmt}`, true);
+        xhttp.open("GET", `${documentRoot}/admin/feedbacks/delete?cmtId=${id_cmt}`, true);
         xhttp.send();
     }
 }
@@ -138,7 +139,7 @@ function updatePrice(id_vege){
             document.getElementById("price").placeholder = reponse;
         }
     }
-    xhttp.open("GET", `${documentRoot}/admin/sale/getPrice?vegeId=${id}`, true);
+    xhttp.open("GET", `${documentRoot}/admin/sales/getPrice?vegeId=${id}`, true);
     xhttp.send();
 }
 

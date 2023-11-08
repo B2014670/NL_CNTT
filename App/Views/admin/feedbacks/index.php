@@ -23,8 +23,7 @@
             <div class="card">
               <div class="card-header">
                   <div class="d-flex justify-content-between align-items-center">
-                      <h4>Danh sách bình luận & đánh giá</h4>
-                      <!-- <a class="btn btn-primary" href="<?= DOCUMENT_ROOT ?>/admin/sale/create">Thêm sản phẩm khuyến mãi</a> -->
+                      <h4>Danh sách bình luận & đánh giá</h4>                      
                   </div>
               </div>
               <div class="card-body">

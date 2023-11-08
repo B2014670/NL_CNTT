@@ -21,7 +21,7 @@
             <hr>
 
             <div class="d-grid mb-2">
-              <button class="btn btn-lg btn-primary btn-login btn-sentMail fw-bold text-uppercase">Tiếp theo</button>
+              <button class="btn btn-lg btn-primary btn-login btn-sentMail disabled fw-bold text-uppercase">Tiếp theo</button>
             </div>
             <a class="d-block text-center mt-2 small" href="<?= DOCUMENT_ROOT ?>/accounts/login">Quay lại đăng nhập</a>
             <a class="d-block text-center mt-2 small" href="<?= DOCUMENT_ROOT ?>/accounts/register">Bạn đã là thành viên chưa? Đăng ký</a>

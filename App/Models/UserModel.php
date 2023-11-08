@@ -132,8 +132,10 @@ class UserModel extends Database
 
                 if ($result == 1 || $result == 0) {
                     return true;
-                } else return false;
-            } else return false;
+                } else return [false,"Cập nhật mật khẩu mới thất bại"];
+            } else return [false,"Mật khẩu cũ chưa đúng"]; 
+        } else{
+            return [false,"Không tìm thấy tài khoản của bạn"];
         }
     }
     function ressetPass($data)

@@ -1,6 +1,6 @@
 <?php
     use App\Core\Controller;
-    class CustomerController extends Controller{
+    class CustomersController extends Controller{
         private $userModel;
 
         function __construct(){
@@ -14,4 +14,3 @@
             $this->view("customers/index", $data);
         }
     }
-?>

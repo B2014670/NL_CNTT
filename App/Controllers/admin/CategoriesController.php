@@ -3,6 +3,7 @@
 
     class CategoriesController extends Controller{
         private $cateModel;
+
         function __construct(){
             $this->cateModel = $this->model("CategoriesModel");
         }
@@ -66,7 +67,7 @@
 
                 $result = $this->cateModel->update($data);
                 if ($result == true) header("Location: ".DOCUMENT_ROOT."/admin/categories");
-                else header("Location: ".DOCUMENT_ROOT."/admin/categories/edit");
+                else header("Location: ".DOCUMENT_ROOT."/admin/categories/edit/".$data["id"]);
             }
         }
 

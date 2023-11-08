@@ -1,7 +1,7 @@
 <?php
     use App\Core\Controller;
 
-    class FeedbackController extends Controller{
+    class FeedbacksController extends Controller{
         private $feedbackModel;
         function __construct(){
             $this->feedbackModel = $this->model("FeedbacksModel");

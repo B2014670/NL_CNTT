@@ -7,7 +7,7 @@
         //Get id-order of delivered orders by id-user
         function getDeliveredOrders($userId){
             $status = 4;
-            $stmt = $this->conn->prepare("SELECT id FROM orders WHERE id_user=? AND id_status=?");
+            $stmt = $this->conn->prepare("SELECT id, order_time FROM orders WHERE id_user=? AND id_status=?");
 
             $stmt->bind_param("ii", $userId, $status);
             $stmt->execute();
@@ -22,7 +22,7 @@
         //Get id-order of delivering orders by id-user
         function getDeliveringOrders($userId){
             $status = 3;
-            $stmt = $this->conn->prepare("SELECT id FROM orders WHERE id_user=? AND id_status=?");
+            $stmt = $this->conn->prepare("SELECT id, order_time FROM orders WHERE id_user=? AND id_status=?");
 
             $stmt->bind_param("ii", $userId, $status);
             $stmt->execute();
@@ -37,7 +37,7 @@
         //Get id-order of prepairing orders by id-user
         function getPreparingOrders($userId){
             $status = 2;
-            $stmt = $this->conn->prepare("SELECT id FROM orders WHERE id_user=? AND id_status=?");
+            $stmt = $this->conn->prepare("SELECT id, order_time FROM orders WHERE id_user=? AND id_status=?");
 
             $stmt->bind_param("ii", $userId, $status);
             $stmt->execute();
@@ -52,7 +52,7 @@
         //Get id-order of no-processed orders by id-user
         function getNoProcessedOrders($userId){
             $status = 1;
-            $stmt = $this->conn->prepare("SELECT id FROM orders WHERE id_user=? AND id_status=?");
+            $stmt = $this->conn->prepare("SELECT id, order_time FROM orders WHERE id_user=? AND id_status=?");
 
             $stmt->bind_param("ii", $userId, $status);
             $stmt->execute();
@@ -79,6 +79,30 @@
 
         function book($userId){
             $stmt = $this->conn->prepare("CALL sp_book(?)");
+            $stmt->bind_param("i", $userId);
+            $stmt->execute();
+            $result = $stmt->get_result();
+
+            if ($result->num_rows >0){
+                return $result->fetch_assoc();
+            }
+            else return false;
+        }
+
+        function unbook($userId){
+            $stmt = $this->conn->prepare("CALL delete_sp_book(?)");
+            $stmt->bind_param("i", $userId);
+            $stmt->execute();
+            $result = $stmt->get_result();
+
+            if ($result->num_rows >0){
+                return $result->fetch_assoc();
+            }
+            else return false;
+        }
+
+        function getMaxOrderid($userId){
+            $stmt = $this->conn->prepare("SELECT max(id) as orderId FROM orders WHERE id_user = ?;");
             $stmt->bind_param("i", $userId);
             $stmt->execute();
             $result = $stmt->get_result();

@@ -42,11 +42,12 @@
                         $randomNum = time();
                         $imageExt = pathinfo($_FILES["image"]["name"], PATHINFO_EXTENSION);//Lay phan mo rong cua ten file
                         $newImageName = $randomNum.".".$imageExt;
+                        move_uploaded_file($_FILES["image"]["tmp_name"], IMG.DS."vegetables".DS.$newImageName);
+                        $data["image"] = $newImageName;
                     }
                 }
 
-                move_uploaded_file($_FILES["image"]["tmp_name"], IMG.DS."vegetables".DS.$newImageName);
-                $data["image"] = $newImageName;
+                
                 
                 $result = $this->vegeModel->insert($data);
                 if ($result == true) header("Location: ".DOCUMENT_ROOT."/admin/products");
@@ -90,7 +91,7 @@
 
                 $result = $this->vegeModel->update($data);
                 if ($result == true) header("Location: ".DOCUMENT_ROOT."/admin/products");
-                else header("Location: ".DOCUMENT_ROOT."/admin/products/edit");
+                else header("Location: ".DOCUMENT_ROOT."/admin/products/edit/".$data["id"]);
             }
         }
 

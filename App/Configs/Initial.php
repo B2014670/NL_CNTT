@@ -36,7 +36,6 @@
     require_once CORE.DS."App.php";
     require_once CORE.DS."Controller.php";
     require_once CORE.DS."Database.php";
-    require_once CONF.DS."Email.php";
     //PageBreak
     defined("NUM_OF_VEGE_ON_PAGE") ?: define("NUM_OF_VEGE_ON_PAGE", 12);
 ?>
