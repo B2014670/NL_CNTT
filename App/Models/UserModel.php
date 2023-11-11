@@ -60,12 +60,11 @@ class UserModel extends Database
 
         if ($result->num_rows > 0) {
             $result = $result->fetch_assoc();
-            // if (password_verify($password, $result["password"])==true) return [true, $result];
+            if (password_verify($password, $result["password"]) == true) return [true, $result];
             // else return "Password incorrect!";
-            if ($password === $result["password"])
-                return [true, $result];
-            else
-                return "Email hoặc mật khẩu không chính xác!";
+            // if ($password === $result["password"])
+            //     return [true, $result];
+            else return "Email hoặc mật khẩu không chính xác!";
         } else return "Email hoặc mật khẩu không chính xác!";
     }
 
@@ -132,10 +131,10 @@ class UserModel extends Database
 
                 if ($result == 1 || $result == 0) {
                     return true;
-                } else return [false,"Cập nhật mật khẩu mới thất bại"];
-            } else return [false,"Mật khẩu cũ chưa đúng"]; 
-        } else{
-            return [false,"Không tìm thấy tài khoản của bạn"];
+                } else return [false, "Cập nhật mật khẩu mới thất bại"];
+            } else return [false, "Mật khẩu cũ chưa đúng"];
+        } else {
+            return [false, "Không tìm thấy tài khoản của bạn"];
         }
     }
     function ressetPass($data)
@@ -242,4 +241,17 @@ class UserModel extends Database
             return false;
         }
     }
+
+    function countAll()
+    {
+        $sql = "SELECT id FROM users WHERE role=1";
+        $result = $this->conn->query($sql);
+
+        if ($result->num_rows > 0) {
+            return $result->num_rows;
+        } else {
+            return false;
+        }
+    }
+
 }

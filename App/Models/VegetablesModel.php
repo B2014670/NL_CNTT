@@ -230,6 +230,18 @@
             }
         }
 
+        function countSale(){
+            $sql = "SELECT id FROM vegetables WHERE sale=1";
+            $result = $this->conn->query($sql);
+
+            if($result->num_rows >0){
+                return $result->num_rows;
+            }
+            else{
+                return false;
+            }
+        }
+
         function createSale($data){
             $id = $data["id_vege"];
             $sale_price= $data["price"];

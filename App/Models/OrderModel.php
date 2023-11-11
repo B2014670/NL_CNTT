@@ -142,6 +142,18 @@
             }
         }
 
+        function finishedOrders(){
+            $sql = "SELECT id  FROM orders WHERE id_status <> 5";
+            $result = $this->conn->query($sql);
+
+            if($result->num_rows >0){
+                return $result->num_rows;
+            }
+            else{
+                return false;
+            }
+        }
+
         function getOrderDetails($orderId){
             $stmt = $this->conn->prepare("CALL sp_getOrderDetails(?)");
             $stmt->bind_param("i", $orderId);
@@ -166,5 +178,85 @@
             }
             else return false;
         }
+
+        function costOrderMonthlyOfYear($year){
+            $stmt = $this->conn->prepare("SELECT EXTRACT(MONTH FROM o.order_time) AS month,                                                  
+                                                SUM(od.price*od.amount) AS cost
+                                        FROM orders o
+                                        JOIN order_details od ON o.id = od.id_order
+                                        WHERE EXTRACT(YEAR FROM o.order_time) = ?
+                                        GROUP BY  EXTRACT(MONTH FROM o.order_time);");
+            $stmt->bind_param("i", $year);
+            $stmt->execute();
+            $result = $stmt->get_result();
+
+            if ($result->num_rows >0){
+                return $result->fetch_all(MYSQLI_ASSOC);
+            }
+            else return false;
+        }
+
+        function costOrderMonthOfYear($year, $month){
+            $stmt = $this->conn->prepare("SELECT EXTRACT(MONTH FROM o.order_time) AS month,
+                                                EXTRACT(YEAR FROM o.order_time) AS year,                                                  
+                                                SUM(od.price*od.amount) AS cost
+                                        FROM orders o
+                                        JOIN order_details od ON o.id = od.id_order
+                                        WHERE EXTRACT(YEAR FROM o.order_time) = ?
+                                        AND EXTRACT(MONTH FROM o.order_time) = ?
+                                        GROUP BY  EXTRACT(MONTH FROM o.order_time);");
+            $stmt->bind_param("ii", $year, $month);
+            $stmt->execute();
+            $result = $stmt->get_result();
+
+            if ($result->num_rows >0){
+                return $result->fetch_all(MYSQLI_ASSOC);
+            }
+            else return false;
+        }
+
+        function numVegeOfYear($year){
+            $stmt = $this->conn->prepare("SELECT v.name, v.weight*SUM(od.amount) AS gram
+                                            FROM orders o
+                                            JOIN order_details od ON o.id = od.id_order
+                                            JOIN vegetables v ON od.id_veg= v.id
+                                            WHERE EXTRACT(YEAR FROM o.order_time) = ?
+                                            GROUP BY  v.name;");
+            $stmt->bind_param("i", $year);
+            $stmt->execute();
+            $result = $stmt->get_result();
+
+            if ($result->num_rows >0){
+                return $result->fetch_all(MYSQLI_ASSOC);
+            }
+            else return false;
+        }
+
+        function numVegeMonthOfYear($year, $month){
+            $stmt = $this->conn->prepare("SELECT v.name, v.weight*SUM(od.amount) AS gram
+                                            FROM orders o
+                                            JOIN order_details od ON o.id = od.id_order
+                                            JOIN vegetables v ON od.id_veg= v.id
+                                            WHERE EXTRACT(YEAR FROM o.order_time) = ?
+                                            AND EXTRACT(MONTH FROM o.order_time) = ?
+                                            GROUP BY  v.name;");
+            $stmt->bind_param("ii", $year, $month);
+            $stmt->execute();
+            $result = $stmt->get_result();
+
+            if ($result->num_rows >0){
+                return $result->fetch_all(MYSQLI_ASSOC);
+            }
+            else return false;
+        }
+
+        function year(){
+            $stmt = $this->conn->prepare("SELECT DISTINCT EXTRACT(year FROM orders.order_time) AS year FROM orders ORDER BY EXTRACT(year FROM orders.order_time) DESC");
+            $stmt->execute();
+            $result = $stmt->get_result();
+            if ($result->num_rows >0){
+                return $result->fetch_all(MYSQLI_ASSOC);
+            }
+            else return false;
+        }
     }
-?>

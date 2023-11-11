@@ -4,7 +4,7 @@
                 "title" => "Trang chủ",
                 "name" => "home",
                 "icon" => "nav-icon fas fa-home",
-                "link" => "/admin"
+                "link" => "/admin/home"
             ],
 
             "Sản phẩm" => [

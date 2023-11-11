@@ -63,6 +63,9 @@
         <script src="<?= URL_PUBLIC ?>/admin/plugins/overlayScrollbars/js/jquery.overlayScrollbars.min.js"></script>
         <!-- AdminLTE App -->
         <script src="<?= URL_PUBLIC ?>/admin/dist/js/adminlte.js"></script>
+        <!-- Chart js -->
+        <script src="<?= URL_PUBLIC ?>/admin/plugins/chart.js/Chart.min.js"></script>
+        <script src="<?= URL_PUBLIC ?>/admin/dist/js/pages/dashboard3.js"></script>
         <!-- DataTables  & Plugins -->
         <script src="<?= URL_PUBLIC ?>/admin/plugins/datatables/jquery.dataTables.min.js"></script>
         <script src="<?= URL_PUBLIC ?>/admin/plugins/datatables-bs4/js/dataTables.bootstrap4.min.js"></script>
