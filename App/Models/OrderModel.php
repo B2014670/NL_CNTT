@@ -131,7 +131,8 @@
 
         // Admin
         function all(){
-            $sql = "SELECT O.id as id, O.order_time as order_time, O.delivery_time as deli_time, S.id as status, U.name as username, U.address as address FROM orders O JOIN status S ON O.id_status = S.id JOIN users U ON O.id_user = U.id";
+            $sql = "SELECT O.id as id, O.order_time as order_time, O.delivery_time as deli_time, S.id as status, U.name as username, U.address as address 
+                    FROM orders O JOIN status S ON O.id_status = S.id JOIN users U ON O.id_user = U.id";
             $result = $this->conn->query($sql);
 
             if($result->num_rows >0){
@@ -156,6 +157,24 @@
 
         function getOrderDetails($orderId){
             $stmt = $this->conn->prepare("CALL sp_getOrderDetails(?)");
+            $stmt->bind_param("i", $orderId);
+            $stmt->execute();
+            $result = $stmt->get_result();
+
+            if ($result->num_rows >0){
+                return $result->fetch_all(MYSQLI_ASSOC);
+            }
+            else return false;
+        }
+
+        //Get number of no-processed orders by admin for minus warehouse
+        function getOrderDetailNoProcess($data){
+            $orderId = $data["orderId"];
+            $stmt = $this->conn->prepare("SELECT V.id as id_vege, OD.amount as amount, V.weight                                                
+                                        FROM orders O 
+                                        JOIN order_details OD on O.id = OD.id_order 
+                                        JOIN vegetables V on OD.id_veg = V.id                                 
+                                        WHERE O.id = ? AND O.id_status=1");
             $stmt->bind_param("i", $orderId);
             $stmt->execute();
             $result = $stmt->get_result();

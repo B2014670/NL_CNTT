@@ -69,21 +69,24 @@
                 if ($result == true) header("Location: ".DOCUMENT_ROOT."/admin/warehouse");
                 else header("Location: ".DOCUMENT_ROOT."/admin/warehouse/edit".$data["id"]);
             }
-            // if(!isset($_POST)) header("Location: ".DOCUMENT_ROOT."/admin/products/edit");
-            // else{
-            //     $data["id"] = $vegeId;
-            //     $data["cate"] = $_POST["cate"];
-            //     $data["name"] = $_POST["name"];
-            //     $data["weight"] = $_POST["weight"];
-            //     $data["price"] = $_POST["price"];
-            //     $data["orig"] = $_POST["orig"];
-
-
-            //     $result = $this->vegeModel->update($data);
-            //     if ($result == true) header("Location: ".DOCUMENT_ROOT."/admin/products");
-            //     else header("Location: ".DOCUMENT_ROOT."/admin/products/edit/".$data["id"]);
-            // }
         }
+
+        // function updateStock($wareId){
+        //     if(!isset($_POST)) header("Location: ".DOCUMENT_ROOT."/admin/products/edit");
+        //     else{ 
+        //         $data["id"] = $wareId;               
+        //         $data["id_vege"] = $_POST["id"];
+        //         $data["entry_date"] = $_POST["entry_date"];
+        //         $data["expired_date"] = $_POST["expired_date"];
+        //         $data["weight"] = $_POST["weight"];
+        //         $data["stock"] = $_POST["stock"];
+        //         $data["measure"] = $_POST["measure"];     
+
+        //         $result = $this->wareModel->update($data);
+        //         if ($result == true) header("Location: ".DOCUMENT_ROOT."/admin/warehouse");
+        //         else header("Location: ".DOCUMENT_ROOT."/admin/warehouse/edit".$data["id"]);
+        //     }
+        // }
 
         
         // function delete(){

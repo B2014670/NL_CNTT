@@ -52,8 +52,8 @@
                     <td>
                       <img src="<?= URL_IMG ?>/vegetables/<?= $vege["image"] ?>" class="rounded" alt="..." style="width: 100px">
                     </td>                    
-                    <td><?=number_format($vege["quantity"], 0, ',', ' ') ?></td>
-                    <td><?= $vege["stock"] ?></td>
+                    <td><?=number_format($vege["quantity"], 3, ',', ' ') ?></td>
+                    <td><?= number_format($vege["stock"], 3, ',', ' ')  ?></td>
                     <td><?= date("d/m/Y", strtotime($vege["entry_date"]));?></td>
                     <td><?= date("d/m/Y", strtotime($vege["expired_date"]));?></td>
                     <td>

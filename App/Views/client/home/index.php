@@ -7,17 +7,15 @@
         <div class="col-md-8 p-0 m-0">
             <div id="heroCarousel" style="background-color: var(--body)!important;" class="carousel slide mt-2 mx-2" data-bs-ride="carousel">
                 <div class="carousel-inner">
-                    <div class="carousel-item active"><img src="public\img\home\banner10.png" class="d-block w-100"></div>
-                    <div class="carousel-item "><img src="public\img\home\banner1.png" class="d-block w-100"></div>
+                    <div class="carousel-item active"><img src="public\img\home\banner9.png" class="d-block w-100"></div>
+                    <div class="carousel-item"><img src="public\img\home\banner8.png" class="d-block w-100"></div>
+                    <div class="carousel-item "><img src="public\img\home\banner7.png" class="d-block w-100"></div>
+                    <div class="carousel-item"><img src="public\img\home\banner1.png" class="d-block w-100"></div>
                     <div class="carousel-item"><img src="public\img\home\banner2.png" class="d-block w-100"></div>
                     <div class="carousel-item"><img src="public\img\home\banner3.png" class="d-block w-100"></div>
                     <div class="carousel-item"><img src="public\img\home\banner4.png" class="d-block w-100"></div>
                     <div class="carousel-item"><img src="public\img\home\banner6.png" class="d-block w-100"></div>
                     <div class="carousel-item"><img src="public\img\home\banner5.png" class="d-block w-100"></div>
-                    <div class="carousel-item"><img src="public\img\home\banner7.png" class="d-block w-100"></div>
-                    <div class="carousel-item"><img src="public\img\home\banner8.png" class="d-block w-100"></div>
-                    <div class="carousel-item"><img src="public\img\home\banner9.png" class="d-block w-100"></div>
-
                 </div>
                 <ol class="carousel-indicators p-0 m-0">
                     <li data-bs-target="#heroCarousel" data-bs-slide-to="0" class="active" aria-current="true"></li>
@@ -29,7 +27,6 @@
                     <li data-bs-target="#heroCarousel" data-bs-slide-to="6" class=""></li>
                     <li data-bs-target="#heroCarousel" data-bs-slide-to="7" class=""></li>
                     <li data-bs-target="#heroCarousel" data-bs-slide-to="8" class=""></li>
-                    <li data-bs-target="#heroCarousel" data-bs-slide-to="9" class=""></li>
                 </ol>
             </div>
         </div>
