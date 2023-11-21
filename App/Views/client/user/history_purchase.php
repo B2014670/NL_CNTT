@@ -22,7 +22,9 @@
                 <div class="history">
                     <?php $total = 0; ?>
                     <div class="history-title">Mã đơn hàng: #<?= $orders["id"];
-                                                                print_r($data["noProcessedOrders"]) ?></div>
+                                                                // print_r($data["noProcessedOrders"]) 
+                                                                ?>
+                                                                </div>
 
                     <?php foreach ($data[$orders["id"]]["vege"] as $i => $vege) : ?>
                         <div class="history-content">

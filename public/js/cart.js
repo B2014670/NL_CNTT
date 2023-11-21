@@ -20,7 +20,7 @@ function addToCart(id_user, id_vege){
                 launch_toast_yes("Đã thêm vào giỏ hàng!");
             }
             else{//Adding is failed
-                launch_toast_no("Không thể thêm vào giỏ!");
+                launch_toast_no("Số lượng trong kho không đủ!");
             }
         }
     }

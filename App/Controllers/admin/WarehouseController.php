@@ -5,104 +5,94 @@
         private $vegeModel;
         private $cateModel;
         private $origModel;
+        private $wareModel;
+
         function __construct(){
             $this->vegeModel = $this->model("VegetablesModel");
             $this->cateModel = $this->model("CategoriesModel");
             $this->origModel = $this->model("OriginalModel");
+            $this->wareModel = $this->model("WarehouseModel");
         }
 
         function Index(){
-            $result = $this->vegeModel->all();
-            if ($result != false) $data["vege"] = $result;
+            $result = $this->wareModel->all();
+            if ($result != false) $data["warehoue"] = $result;
             
             $this->view("warehouse/index", $data);
         }
 
         function create(){
-            $result1 = $this->cateModel->all();
-            if ($result1 != false) $data["categories"] = $result1;
-
-            $result2 = $this->origModel->all();
-            if ($result2 != false) $data["orig"] = $result2;
+            $result1 = $this->vegeModel->all();
+            if ($result1 != false) $data["vege"] = $result1;
 
             $this->view("warehouse/create", $data);
         }
 
         function store(){
-            if(!isset($_POST)) header("Location: ".DOCUMENT_ROOT."/admin/products/create");
-            else{
-                $data["cate"] = $_POST["cate"];
-                $data["name"] = $_POST["name"];
+            if(!isset($_POST)) header("Location: ".DOCUMENT_ROOT."/admin/warehouse/create");
+            else{                
+                $data["id"] = $_POST["id"];
+                $data["entry_date"] = $_POST["entry_date"];
+                $data["expired_date"] = $_POST["expired_date"];
                 $data["weight"] = $_POST["weight"];
-                $data["price"] = $_POST["price"];
-                $data["orig"] = $_POST["orig"];
+                $data["measure"] = $_POST["measure"];     
 
-                if(isset($_FILES["image"])){
-                    if($_FILES["image"]["name"] != ""){
-                        $randomNum = time();
-                        $imageExt = pathinfo($_FILES["image"]["name"], PATHINFO_EXTENSION);//Lay phan mo rong cua ten file
-                        $newImageName = $randomNum.".".$imageExt;
-                        move_uploaded_file($_FILES["image"]["tmp_name"], IMG.DS."vegetables".DS.$newImageName);
-                        $data["image"] = $newImageName;
-                    }
-                }
-
-                
-                
-                $result = $this->vegeModel->insert($data);
-                if ($result == true) header("Location: ".DOCUMENT_ROOT."/admin/products");
-                else header("Location: ".DOCUMENT_ROOT."/admin/products/create");
+                $result = $this->wareModel->insert($data);
+                if ($result == true) header("Location: ".DOCUMENT_ROOT."/admin/warehouse");
+                else header("Location: ".DOCUMENT_ROOT."/admin/warehouse/create");
             }
         }
 
         
-        function edit($vegeId){
-            $result1 = $this->cateModel->all();
-            if ($result1 != false) $data["categories"] = $result1;
+        function edit($wareId){
+            $result1 = $this->vegeModel->getIdName();
+            if ($result1 != false) $data["vege"] = $result1;
 
-            $result2 = $this->vegeModel->getVegeById($vegeId);
-            if ($result2 != false) $data["vege"] = $result2;
+            $result2 = $this->wareModel->getBatchById($wareId);
+            if ($result2 != false) $data["ware"] = $result2;
 
-            $result3 = $this->origModel->all();
-            if ($result3 != false) $data["orig"] = $result3;
             $this->view("warehouse/edit", $data);
         }
 
-        function update($vegeId){
+        function update($wareId){
             if(!isset($_POST)) header("Location: ".DOCUMENT_ROOT."/admin/products/edit");
-            else{
-                $data["id"] = $vegeId;
-                $data["cate"] = $_POST["cate"];
-                $data["name"] = $_POST["name"];
+            else{ 
+                $data["id"] = $wareId;               
+                $data["id_vege"] = $_POST["id"];
+                $data["entry_date"] = $_POST["entry_date"];
+                $data["expired_date"] = $_POST["expired_date"];
                 $data["weight"] = $_POST["weight"];
-                $data["price"] = $_POST["price"];
-                $data["orig"] = $_POST["orig"];
+                $data["stock"] = $_POST["stock"];
+                $data["measure"] = $_POST["measure"];     
 
-                if($_FILES["image"]["name"] != ""){
-                    $randomNum = time();
-                    $imageExt = pathinfo($_FILES["image"]["name"], PATHINFO_EXTENSION);//Lay phan mo rong cua ten file
-                    $newImageName = $randomNum.".".$imageExt;
-                    move_uploaded_file($_FILES["image"]["tmp_name"], IMG.DS."vegetables".DS.$newImageName);
-                    $data["image"] = $newImageName;
-                }      
-                else{
-                    $data["image"] = $_POST["old-image"];
-                }
-
-                $result = $this->vegeModel->update($data);
-                if ($result == true) header("Location: ".DOCUMENT_ROOT."/admin/products");
-                else header("Location: ".DOCUMENT_ROOT."/admin/products/edit/".$data["id"]);
+                $result = $this->wareModel->update($data);
+                if ($result == true) header("Location: ".DOCUMENT_ROOT."/admin/warehouse");
+                else header("Location: ".DOCUMENT_ROOT."/admin/warehouse/edit".$data["id"]);
             }
+            // if(!isset($_POST)) header("Location: ".DOCUMENT_ROOT."/admin/products/edit");
+            // else{
+            //     $data["id"] = $vegeId;
+            //     $data["cate"] = $_POST["cate"];
+            //     $data["name"] = $_POST["name"];
+            //     $data["weight"] = $_POST["weight"];
+            //     $data["price"] = $_POST["price"];
+            //     $data["orig"] = $_POST["orig"];
+
+
+            //     $result = $this->vegeModel->update($data);
+            //     if ($result == true) header("Location: ".DOCUMENT_ROOT."/admin/products");
+            //     else header("Location: ".DOCUMENT_ROOT."/admin/products/edit/".$data["id"]);
+            // }
         }
 
         
-        function delete(){
-            if(isset($_GET)){
-                $result = $this->vegeModel->deleteVege($_GET);
-                echo $result;
-                return;
-            }
-            else echo "Can not delete this item!"; 
-        }
+        // function delete(){
+        //     if(isset($_GET)){
+        //         $result = $this->vegeModel->deleteVege($_GET);
+        //         echo $result;
+        //         return;
+        //     }
+        //     else echo "Can not delete this item!"; 
+        // }
     }
 ?>

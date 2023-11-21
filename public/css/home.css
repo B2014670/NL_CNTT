@@ -47,37 +47,12 @@
 
 /* end banner */
 .ribbon4 {
-    position: fixed;        
-    top: 0px;
+    position: absolute;
+    margin-left: 23px;        
     padding: 8px 8px;
     background: #00b3ed;
     box-shadow: -1px 2px 3px rgba(0, 0, 0, 0.3);
 }   
-/* ribon sale */
-.ribbon4:before,
-.ribbon4:after {
-    content: "";
-    position: absolute;
-}
-
-.ribbon4:before {
-    width: 7px;
-    height: 100%;
-    top: 0;
-    left: -6.5px;
-    padding: 0 0 7px;
-    background: inherit;
-    border-radius: 5px 0 0 5px;
-}
-
-.ribbon4:after {
-    width: 5px;
-    height: 5px;
-    bottom: -5px;
-    left: -4.5px;
-    background: lightblue;
-    border-radius: 5px 0 0 5px;
-}
 /*End ribon sale */
 /* slick */
 .lead {
@@ -486,7 +461,7 @@
 }
 
 #fs {
-    height: 65%;
+    height: 68%;
     padding-left: 10px;
     color: gray;
     box-shadow: rgba(17, 17, 26, 0.1) 0px 1px 0px;
@@ -503,7 +478,7 @@
 }
 
 #th {
-    height: 23%;
+    height: 20%;
     color: gray;
     padding-left: 15px;
     padding-top: 20px;

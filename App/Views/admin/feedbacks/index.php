@@ -47,7 +47,7 @@
                       <td><?= $feedback["vege"] ?></td>
                       <td><?= $feedback["comment"] ?></td>
                       <td><?= $feedback["vote"]?></td>
-                      <td><?= $feedback["time"]?></td>
+                      <td><?= date("d/m/Y H:i:s", strtotime($feedback["time"]));?></td>
                       <td>
                         <div class="btn-group" role="group" aria-label="Basic example">
                             <button onclick="deleteComment(<?= $feedback['id'] ?>)" class="btn btn-danger">Xóa</button>

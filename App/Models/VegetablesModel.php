@@ -5,7 +5,31 @@
     class VegetablesModel extends Database{
 
         function all(){
-            $sql = "SELECT * FROM vegetables";
+            $sql = "SELECT * FROM vegetables ORDER BY name ASC";
+            $result = $this->conn->query($sql);
+
+            if($result->num_rows >0){
+                return $result->fetch_all(MYSQLI_ASSOC);
+            }
+            else{
+                return false;
+            }
+        }
+
+        function getIdName(){
+            $sql = "SELECT id, name FROM vegetables ORDER BY name ASC";
+            $result = $this->conn->query($sql);
+
+            if($result->num_rows >0){
+                return $result->fetch_all(MYSQLI_ASSOC);
+            }
+            else{
+                return false;
+            }
+        }
+
+        function stillExpired(){
+            $sql = "SELECT * FROM vegetables ORDER BY name ASC";
             $result = $this->conn->query($sql);
 
             if($result->num_rows >0){

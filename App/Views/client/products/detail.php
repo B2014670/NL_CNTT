@@ -1,3 +1,6 @@
+<?php
+// print_r($data)
+?>
 <!-- Banner -->
 <div>
     <img src="<?= URL_ICON ?>/product-banner-Copy.jpg" alt="banner" class="img-fluid">
@@ -36,12 +39,26 @@
 
 
                     <span class="slide-price"><?= number_format($data["vege_to_show"]["sale_price"] == NULL ? $data['vege_to_show']['price'] : $data['vege_to_show']['sale_price'], 0, ',', '.') ?>đ</span>
-                    <p class="detail-content text-dark">Khối lượng: <b><?= $data['vege_to_show']['weight'] == 1000 ? '1k' : $data['vege_to_show']['weight'] ?>g</b></p>
+
+                    <p class="detail-content text-dark mb-2">Khối lượng:
+                        <?php if ($data["vege_to_show"]["weight"] >= 1000) : ?>
+                            <b><?= $data['vege_to_show']['weight'] / 1000 ?>kg</b>
+                        <?php else : ?>
+                            <b><?= $data['vege_to_show']['weight'] ?>g</b>
+                        <?php endif; ?>
+                    </p>
+
+                    <p class="detail-content text-dark mb-2">Kho: <b><?= $data['vege_to_show']['stock'] * 1000 / $data['vege_to_show']['weight']  ?></b></p>
                     <div class="detail-amount mb-3 text-dark">
                         <p class="d-inline detail-content">Số lượng:</p>
                         <input id="detail_amount" class="form-control text-center d-inline w-25" value="1" type="number" min="1" max="10">
                     </div>
-                    <button class="btn btn-primary" onclick="addToCartInDetail(<?= isset($_SESSION['user']) ? $_SESSION['user']['id'] : 0 ?>, <?= $data['vege_to_show']['id'] ?>, detail_amount)">Thêm vào giỏ</button>
+
+                    <?php if (($data["vege_to_show"]["stock"] > 0)) : ?>
+                        <button class="btn btn-primary" onclick="addToCartInDetail(<?= isset($_SESSION['user']) ? $_SESSION['user']['id'] : 0 ?>, <?= $data['vege_to_show']['id'] ?>, detail_amount)">Thêm vào giỏ</button>
+                    <?php else : ?>
+                        <p style="color: red; font-weight: 700; font-size: 24px;">Sản phẩm tạm hết</p>
+                    <?php endif; ?>
 
                 </div>
                 <div id="sc">
@@ -49,45 +66,10 @@
                     <h5 id="inf" style="cursor: pointer; color: grey; font-weight: 700; font-size: 24px;" onclick="infoFunction('<?= $data['vege_to_show']['planting_place'] ?>' )">Nơi trồng</h5>
                 </div>
                 <div id="th">
-                    <?= $data['vege_to_show']['seed'] ?>                    
+                    <?= $data['vege_to_show']['seed'] ?>
                 </div>
             </div>
         </div>
-
-        <!-- <div class="about">
-            <img class="about-logo w-50 " src="<?= URL_IMG ?>/vegetables/<?= $data['vege_to_show']['image'] ?>" alt="">
-            <div class="about-content mt-4 w-50 ps-5 pt-3">
-                <h2 class="about-content-title"><?= $data['vege_to_show']['name'] ?></h2>
-                <div class="star-vote mt-1 justify-content-start">
-                    <?php
-                    $vote = floor($data['avg_rating']);
-                    $no_vote = floor(5 - $data['avg_rating']);
-                    $half_vote = 5 - ($vote + $no_vote);
-                    ?>
-                    <?php for ($i = 1; $i <= $vote; $i++) : ?>
-                        <i class="fas fa-star" style="color: #FFCC33; margin-left:1px; margin-right:1px; font-size: 16px;"></i>
-                    <?php endfor; ?>
-                    <?php for ($i = 1; $i <= $half_vote; $i++) : ?>
-                        <i class="fas fa-star-half-alt" style="color: #FFCC33; margin-left:1px; margin-right:1px; font-size: 16px;"></i>
-                    <?php endfor; ?>
-                    <?php for ($i = 1; $i <= $no_vote; $i++) : ?>
-                        <i class="far fa-star" style="color: #FFCC33; margin-left:1px; margin-right:1px; font-size: 16px;"></i>
-                    <?php endfor; ?>
-                </div>
-                <h5 class="slide-price"><?= number_format($data["vege_to_show"]["sale_price"] == NULL ? $data['vege_to_show']['price'] : $data['vege_to_show']['sale_price'], 0, ',', '.') ?>đ</h5>
-                <p class="detail-content">Khối lượng: <b><?= $data['vege_to_show']['weight'] == 1000 ? '1k' : $data['vege_to_show']['weight'] ?>g</b></p>
-                <div class="detail-amount mb-3">
-                    <p class="d-inline detail-content">Số lượng:</p>
-                    <input id="detail_amount" class="form-control text-center d-inline w-25" value="1" type="number" min="1" max="10">
-                </div>
-                <button class="btn btn-primary" onclick="addToCartInDetail(<?= isset($_SESSION['user']) ? $_SESSION['user']['id'] : 0 ?>, <?= $data['vege_to_show']['id'] ?>, detail_amount)">Thêm vào giỏ</button>
-                <div class="detail-bonus mt-4">
-                    <h5 style="color: var(--bs-primary); font-weight: 600; margin-bottom: 20px;">NGUỒN GỐC SẢN PHẨM</h5>
-                    <p class="detail-content"><b>Hạt giống:</b> <?= $data['vege_to_show']['seed'] ?></p>
-                    <p class="detail-content"><b>Nơi trồng:</b> <?= $data['vege_to_show']['planting_place'] ?></p>
-                </div>
-            </div>
-        </div> -->
 
         <!-- Comment and vote -->
         <div class="comment mt-3">
