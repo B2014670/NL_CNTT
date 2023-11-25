@@ -32,9 +32,8 @@ class OrdersController extends Controller
     {
         if (isset($_GET)) {
             $result1 = $this->orderModel->getOrderDetailNoProcess($_GET);
-
-            if ($result1 != false) {
-                // $result2 = $this->orderModel->updateStatus($_GET);
+            $result2 = $this->orderModel->updateStatus($_GET);
+            if ($result1 != false) {     //chưa xử lí thì trừ kho           
                 foreach ($result1 as $i => $item) {
                     $id= $this->wareModel->nearestExpired($item["id_vege"]);
                     $data["a"] = $id;
@@ -43,13 +42,14 @@ class OrdersController extends Controller
                     $data["weight"] = $item["weight"];
                     $result3 = $this->wareModel->updateStock($data);
                     // print_r($data);
+                    //Gia tai thoi diem duyet don ???
                     // if ($result3["sale_price"] == NULL) $data["price"] = $result3["price"];
                     // else $data["price"] = $result3["sale_price"];
                     // $check = $this->orderModel->addToDetails($data);
                 }
             }
-            // print_r($result1);
-            return $result3;
+            echo $result2;
+            return $result2;
         } else echo "Can not update this order!";
     }
 

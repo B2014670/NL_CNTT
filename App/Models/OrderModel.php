@@ -129,10 +129,29 @@
             else return false;
         }
 
+        function checkVegeDelivered($id_vege, $dataSession){
+            $userID = $dataSession["user"]["id"];
+            $status = 4;
+            $stmt = $this->conn->prepare("SELECT id, id_veg 
+                                        FROM orders JOIN order_details ON orders.id=order_details.id_order
+                                        WHERE id_user=? AND id_veg=? AND id_status=?");
+            $stmt->bind_param("iii", $userID, $id_vege, $status);
+            $stmt->execute();
+            $result = $stmt->get_result();
+            if($result->num_rows >0){
+                return $result->num_rows;
+            }
+            else{
+                return 0;
+            }
+        }
+
+
         // Admin
         function all(){
             $sql = "SELECT O.id as id, O.order_time as order_time, O.delivery_time as deli_time, S.id as status, U.name as username, U.address as address 
-                    FROM orders O JOIN status S ON O.id_status = S.id JOIN users U ON O.id_user = U.id";
+                    FROM orders O JOIN status S ON O.id_status = S.id JOIN users U ON O.id_user = U.id
+                    ORDER BY  O.order_time DESC";
             $result = $this->conn->query($sql);
 
             if($result->num_rows >0){
@@ -181,6 +200,24 @@
 
             if ($result->num_rows >0){
                 return $result->fetch_all(MYSQLI_ASSOC);
+            }
+            else return false;
+        }
+
+        //check status NoProcess
+        function checkOrderDetailNoProcess($data){
+            $orderId = $data["orderId"];
+            $stmt = $this->conn->prepare("SELECT V.id as id_vege, OD.amount as amount, V.weight                                                
+                                        FROM orders O 
+                                        JOIN order_details OD on O.id = OD.id_order 
+                                        JOIN vegetables V on OD.id_veg = V.id                                 
+                                        WHERE O.id = ? AND O.id_status=1");
+            $stmt->bind_param("i", $orderId);
+            $stmt->execute();
+            $result = $stmt->get_result();
+
+            if ($result->num_rows >0){
+                return true;
             }
             else return false;
         }

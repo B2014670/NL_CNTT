@@ -5,10 +5,10 @@
 
 <div class="wrapper bg-white">
     <div class="container pt-3 border border-2 rounded-3" style="background-color: var(--body)">
-        <ul class="row taikhoan-nav navbar navbar-expand-lg navbar-light  mx-auto">
-            <li class="col-md-3 col-sm-12 mt-2 bg-white text-center"><a class="text-dark" href="<?= DOCUMENT_ROOT ?>/user">THÔNG TIN</a></li>
-            <li class="col-md-6 col-sm-12 mt-2 bg-white text-center"><a class="text-dark" href="<?= DOCUMENT_ROOT ?>/user/history">LỊCH SỬ MUA HÀNG</a></li>
-            <li class="col-md-3 col-sm-12 mt-2 bg-white text-center"><a class="text-dark" href="<?= DOCUMENT_ROOT ?>/user/password">MẬT KHẨU</a></li>
+        <ul class="taikhoan-nav navbar navbar-expand-lg navbar-light  mx-auto">
+            <li class="col text-center"><a class="text-dark" href="<?= DOCUMENT_ROOT ?>/user">THÔNG TIN</a></li>
+            <li class="col text-center"><a class="text-dark" href="<?= DOCUMENT_ROOT ?>/user/history">LỊCH SỬ MUA HÀNG</a></li>
+            <li class="col text-center"><a class="text-dark" href="<?= DOCUMENT_ROOT ?>/user/password">ĐỖI MẬT KHẨU</a></li>
         </ul>
     </div>
 </div>

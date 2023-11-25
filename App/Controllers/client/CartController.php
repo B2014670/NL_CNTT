@@ -83,15 +83,16 @@ class CartController extends Controller
     function vnpay_payment()
     {
         if (isset($_POST["redirect"])) {
-            // $result = $this->orderModel->getMaxOrderid($_POST["id_user"]);
+            $result = $this->orderModel->getMaxOrderid($_POST["id_user"]);
             $vnp_Url = "https://sandbox.vnpayment.vn/paymentv2/vpcpay.html";
             $vnp_Returnurl = "http://localhost/cart/vnpay_order";
 
-            $vnp_TmnCode = "2203LRN4"; //Mã website tại VNPAY 
-            $vnp_HashSecret = "OQOUDYLLWCFAMFEOQUHIZTMCZPCPRXBV"; //Chuỗi bí mật
+            $vnp_TmnCode = "WH0IW3XY"; //Mã website tại VNPAY 
+            $vnp_HashSecret = "OGDODEHWKYXOTNTJDPFWPIBFZLIDSCWA"; //Chuỗi bí mật
 
-            $vnp_TxnRef = rand(00, 9999); //Mã đơn hàng. Trong thực tế Merchant cần insert đơn hàng vào DB và gửi mã này sang VNPAY
-            $vnp_OrderInfo = 'noi dung thanh toan';
+            //$vnp_TxnRef = rand(00, 9999); //Mã đơn hàng. Trong thực tế Merchant cần insert đơn hàng vào DB và gửi mã này sang VNPAY
+            $vnp_TxnRef = 2; //$result["orderId"]+1
+            $vnp_OrderInfo = 'thanh toan don hang nong san';
             $vnp_OrderType = 'billpayment';
             $vnp_Amount = $_POST["cost"] * 100;
             $vnp_Locale = 'vn';

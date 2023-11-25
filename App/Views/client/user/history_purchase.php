@@ -22,25 +22,26 @@
                 <div class="history">
                     <?php $total = 0; ?>
                     <div class="history-title">Mã đơn hàng: #<?= $orders["id"];
-                                                                // print_r($data["noProcessedOrders"]) 
+                                                                // print_r($data) 
                                                                 ?>
-                                                                </div>
+                    </div>
+                    <div class="div-history-content">
+                        <?php foreach ($data[$orders["id"]]["vege"] as $i => $vege) : ?>
+                            <div class="history-content">
+                                <div class="history-content-img">
+                                    <img src="<?= URL_IMG ?>/vegetables/<?= $vege['image'] ?>" alt="" class=>
+                                </div>
 
-                    <?php foreach ($data[$orders["id"]]["vege"] as $i => $vege) : ?>
-                        <div class="history-content">
-                            <div class="history-content-img">
-                                <img src="<?= URL_IMG ?>/vegetables/<?= $vege['image'] ?>" alt="" class=>
+                                <div class="history-content-decs">
+                                    <p class="cake-name"><b><?= $vege['name'] ?></b></p>
+                                    <p class="cake-size">Khối lượng: <?= $vege['weight'] ?>g</p>
+                                    <p class="cake-price" style="color: var(--main-color)">Giá tiền: <?= number_format($vege["price"], 0, ',', '.') ?> VND</p>
+                                    <p class="cake-quantity">Số lượng: <?= $vege['amount'] ?></p>
+                                </div>
                             </div>
-
-                            <div class="history-content-decs">
-                                <p class="cake-name"><b><?= $vege['name'] ?></b></p>
-                                <p class="cake-size">Khối lượng: <?= $vege['weight'] ?>g</p>
-                                <p class="cake-price" style="color: var(--main-color)">Giá tiền: <?= number_format($vege["price"], 0, ',', '.') ?> VND</p>
-                                <p class="cake-quantity">Số lượng: <?= $vege['amount'] ?></p>
-                            </div>
-                        </div>
-                        <?php $total = $total + $vege['price'] * $vege['amount'] ?>
-                    <?php endforeach; ?>
+                            <?php $total = $total + $vege['price'] * $vege['amount'] ?>
+                        <?php endforeach; ?>
+                    </div>
 
                     <div class="history-ending">
                         <div class="history-ending1">

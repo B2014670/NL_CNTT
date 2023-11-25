@@ -40,6 +40,7 @@
                 </tr>
               </thead>
               <tbody>
+           
                 <?php foreach ($data["order"] as $key => $order) : ?>
                   <tr>
                     <td>#<?= $order["id"] ?></td>

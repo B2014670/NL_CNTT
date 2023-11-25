@@ -5,11 +5,13 @@ use App\Core\Controller;
         private $vegeModel;
         private $cateModel;
         private $feedbackModel;
+        private $orderModel;
 
         function __construct(){
             $this->vegeModel = $this->model("VegetablesModel");
             $this->cateModel = $this->model("CategoriesModel");
             $this->feedbackModel = $this->model("FeedbacksModel");
+            $this->orderModel = $this->model("OrderModel");
         }
 
         //Get vegtables to show on page and pagination
@@ -153,15 +155,26 @@ use App\Core\Controller;
             $this->view("products/detail", $data);
         }
 
-        function addComment($id){
+        function addComment($id){//id_vege
             if(!isset($_POST["rate"])) $vote = 5;
             else $vote = $_POST["rate"];
-
             $cmt = $_POST["comment-content"];
 
-            $result = $this->feedbackModel->addComment($cmt, $vote, $id, $_SESSION);
-            if($result==true) header("Location: ".DOCUMENT_ROOT."/products/detail/".$id);
-            else echo "Add failed!";
+            $result1 = $this->orderModel->checkVegeDelivered($id, $_SESSION);
+            if($result1 == true){
+                $result = $this->feedbackModel->addComment($cmt, $vote, $id, $_SESSION);
+                if($result==true) header("Location: ".DOCUMENT_ROOT."/products/detail/".$id);
+                else echo "Add failed!";
+            }else{
+                echo "<script>
+                if (confirm('Bạn không thể đánh giá!Vui lòng quay lại sau khi hàng được giao!')) {
+                    window.location = '".DOCUMENT_ROOT."/products/detail/".$id."'
+                  } else {
+                    window.location = '".DOCUMENT_ROOT."/products/detail/".$id."'
+                }                
+                </script>";
+            }
+            
         }
     }
 ?>

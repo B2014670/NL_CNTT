@@ -116,7 +116,13 @@
     margin: 10px 0;
 }
 
+.div-history-content{
+    display: flex;
+    flex-wrap: wrap;
+}
+
 .history-title{
+    display: flex;
     border-bottom: 1px solid rgb(224, 221, 221);
     font-weight: 500;
     padding: 5px 10px;
@@ -126,7 +132,7 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-    width: 450px;
+    width: 480px;
     margin: 20px 40px;
     border-bottom: 1px solid rgb(224, 221, 221);
 }

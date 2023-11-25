@@ -55,14 +55,17 @@
                 </tfoot>
             </table>
             <div style="text-align:right">
-            <h5 style="font-weight:600">Tổng tiền: <?= number_format($total, 0, ',', '.') ?>đ</h5>
+                <h5 style="font-weight:600">Tổng tiền: <?= number_format($total, 0, ',', '.') ?>đ</h5>
                 <form action="<?= DOCUMENT_ROOT ?>/cart/vnpay_payment" method="POST">
-                    <a href="<?= DOCUMENT_ROOT ?>/products" class="btn btn-primary"><i class="fas fa-cart-plus"></i> Tiếp tục mua hàng</a>
-                    <button onclick="book(<?= $_SESSION['user']['id'] ?>);" class="btn btn-primary btn-block"><i class="fas fa-money-check"></i> Thanh toán</button>
                     <input type="hidden" name="id_user" value="<?= $_SESSION['user']['id'] ?>">
-                    <input type="hidden" name="cost" value="<?=$total?>">
+                    <input type="hidden" name="cost" value="<?= $total ?>">
                     <button type="submit" class="btn btn-primary btn-block" name="redirect"><i class="fas fa-money-check"></i> Thanh toán VNPAY</button>
                 </form>
+                <div class="pt-2">
+                    <a href="<?= DOCUMENT_ROOT ?>/products" class="btn btn-primary"><i class="fas fa-cart-plus"></i> Tiếp tục mua hàng</a>
+                    <button onclick="book(<?= $_SESSION['user']['id'] ?>);" class="btn btn-primary btn-block"><i class="fas fa-truck-fast"></i> Thanh toán khi nhận</button>
+                </div>
+
             </div>
         <?php endif; ?>
 </div>
