@@ -90,8 +90,8 @@ class CartController extends Controller
             $vnp_TmnCode = "WH0IW3XY"; //Mã website tại VNPAY 
             $vnp_HashSecret = "OGDODEHWKYXOTNTJDPFWPIBFZLIDSCWA"; //Chuỗi bí mật
 
-            //$vnp_TxnRef = rand(00, 9999); //Mã đơn hàng. Trong thực tế Merchant cần insert đơn hàng vào DB và gửi mã này sang VNPAY
-            $vnp_TxnRef = 2; //$result["orderId"]+1
+            //$vnp_TxnRef = rand(00, 9999); //Mã đơn hàng.  Merchant VNPAY
+            $vnp_TxnRef = $result["orderId"]+1; //$result["orderId"]+1
             $vnp_OrderInfo = 'thanh toan don hang nong san';
             $vnp_OrderType = 'billpayment';
             $vnp_Amount = $_POST["cost"] * 100;

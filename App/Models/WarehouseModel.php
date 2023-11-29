@@ -7,7 +7,7 @@ class WarehouseModel extends Database
 
     function all()
     {
-        $sql = "SELECT * FROM vegetables JOIN warehouse ON warehouse.id_vegetable = vegetables.id";
+        $sql = "SELECT * FROM vegetables JOIN warehouse ON warehouse.id_vegetable = vegetables.id ORDER BY expired_date ASC";
         $result = $this->conn->query($sql);
 
         if ($result->num_rows > 0) {

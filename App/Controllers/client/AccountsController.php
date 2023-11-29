@@ -86,13 +86,11 @@ class AccountsController extends Controller
                     $mail->CharSet  = "utf-8";
                     $mail->SMTPAuth   = true;                                   //Enable SMTP authentication
 
-                    // $mail->Host       = 'smtp.mail.yahoo.com';                  //Set the SMTP server to send through
-                    // $mail->Username   = "thanhluan3161@yahoo.com" ;             //SMTP username
-                    // $mail->Password   = "hkdcfezplpumfimv" ;                    //SMTP yahoo app password
+                    $mail->Host       = 'smtp.mail.yahoo.com';                  //Set the SMTP server to send through
+                    $mail->Username   = "thanhluan3161@yahoo.com" ;             //SMTP username
+                    $mail->Password   = "hkdcfezplpumfimv" ;                    //SMTP yahoo app password
 
-                    $mail->Host       = 'smtp.gmail.com';                     //Set the SMTP server 
-                    $mail->Username   = "luanb2014670@student.ctu.edu.vn" ;   //SMTP username
-                    $mail->Password   = "8x2Lg7QH" ;                          //SMTP  app password
+
 
     
                     $mail->SMTPSecure = PHPMailer::ENCRYPTION_SMTPS;            //Enable implicit TLS encryption
